@@ -1,0 +1,109 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scripts/Others/Options2.gd" type="Script" id=1]
+[ext_resource path="res://Resources/Musics/MyVeryOwnDeadShip.ogg" type="AudioStream" id=2]
+[ext_resource path="res://Scenes/Menu.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/fonts/unispace bd.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=9]
+size = 35
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 50
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 4 )
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource( 1 )
+main_menu = ExtResource( 3 )
+
+[node name="HSlider" type="HSlider" parent="."]
+margin_left = 160.0
+margin_top = 158.0
+margin_right = 383.0
+margin_bottom = 186.0
+min_value = -26.0
+max_value = 0.0
+
+[node name="HSlider2" type="HSlider" parent="."]
+margin_left = 139.0
+margin_top = 188.0
+margin_right = 382.0
+margin_bottom = 300.0
+min_value = -26.0
+max_value = 0.0
+
+[node name="HSlider3" type="HSlider" parent="."]
+margin_left = 93.0
+margin_top = 262.0
+margin_right = 383.0
+margin_bottom = 393.0
+min_value = -26.0
+max_value = 0.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+autoplay = true
+bus = "Music"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 18.0
+margin_top = 145.0
+margin_right = 178.0
+margin_bottom = 225.0
+custom_colors/default_color = Color( 1, 0.00392157, 0.611765, 1 )
+custom_colors/selection_color = Color( 1, 0.00392157, 0.611765, 1 )
+custom_colors/font_color_selected = Color( 1, 0.00392157, 0.611765, 1 )
+custom_colors/font_color_shadow = Color( 1, 0.00392157, 0.611765, 1 )
+custom_fonts/normal_font = SubResource( 9 )
+bbcode_enabled = true
+bbcode_text = "[shake]MASTER:"
+text = "MASTER:"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+margin_left = 15.0
+margin_top = 217.0
+margin_right = 147.0
+margin_bottom = 297.0
+custom_colors/default_color = Color( 1, 0.00392157, 0.611765, 1 )
+custom_colors/selection_color = Color( 1, 0.00392157, 0.611765, 1 )
+custom_colors/font_color_selected = Color( 1, 0.00392157, 0.611765, 1 )
+custom_colors/font_color_shadow = Color( 1, 0.00392157, 0.611765, 1 )
+custom_fonts/normal_font = SubResource( 9 )
+bbcode_enabled = true
+bbcode_text = "[shake]MUSIC:"
+text = "MUSIC:"
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="."]
+margin_left = 13.0
+margin_top = 299.0
+margin_right = 109.0
+margin_bottom = 379.0
+custom_colors/default_color = Color( 1, 0.00392157, 0.611765, 1 )
+custom_colors/selection_color = Color( 1, 0.00392157, 0.611765, 1 )
+custom_colors/font_color_selected = Color( 1, 0.00392157, 0.611765, 1 )
+custom_colors/font_color_shadow = Color( 1, 0.00392157, 0.611765, 1 )
+custom_fonts/normal_font = SubResource( 9 )
+bbcode_enabled = true
+bbcode_text = "[shake]SFX:"
+text = "SFX:"
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="."]
+margin_left = 357.0
+margin_top = 13.0
+margin_right = 575.0
+margin_bottom = 138.0
+custom_colors/default_color = Color( 0.945098, 1, 0, 1 )
+custom_colors/selection_color = Color( 0.0862745, 0.294118, 0.462745, 1 )
+custom_colors/font_color_selected = Color( 0.0862745, 0.294118, 0.462745, 1 )
+custom_colors/font_color_shadow = Color( 0.0862745, 0.294118, 0.462745, 1 )
+custom_fonts/normal_font = SubResource( 10 )
+bbcode_enabled = true
+bbcode_text = "[shake]OPTIONS"
+text = "OPTIONS"
+
+[connection signal="value_changed" from="HSlider" to="." method="_on_HSlider_value_changed"]
+[connection signal="value_changed" from="HSlider2" to="." method="_on_HSlider2_value_changed"]
+[connection signal="value_changed" from="HSlider3" to="." method="_on_HSlider3_value_changed"]

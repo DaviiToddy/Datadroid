@@ -1,0 +1,178 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://Resources/Photos/sla.png" type="Texture" id=1]
+[ext_resource path="res://Assets/sprites/!characters/kenney_tooncharacters1/Male person/Tilesheet/character_malePerson_sheetHD.png" type="Texture" id=2]
+[ext_resource path="res://Assets/sprites/!characters/kenney_tooncharacters1/Robot/Tilesheet/character_robot_sheetHD.png" type="Texture" id=3]
+[ext_resource path="res://Assets/sfx/Sound Effects Shooting sounds 001/SHOOT005.mp3" type="AudioStream" id=4]
+[ext_resource path="res://Assets/fonts/kenney_pixelshmup/Tiles/tile_0015.png" type="Texture" id=5]
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 1152, 512, 192, 256 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 1344, 512, 192, 256 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 2 )
+region = Rect2( 1536, 512, 192, 256 )
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"loop": true,
+"name": "run_man",
+"speed": 24.0
+} ]
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 3 )
+region = Rect2( 1152, 512, 192, 256 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 3 )
+region = Rect2( 1344, 512, 192, 256 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 3 )
+region = Rect2( 1536, 512, 192, 256 )
+
+[sub_resource type="SpriteFrames" id=10]
+animations = [ {
+"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
+"loop": true,
+"name": "run_robot",
+"speed": 24.0
+} ]
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=12]
+animations = [ {
+"frames": [ SubResource( 18 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=17]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -82.6141, 263.031 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "bullet"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 653.548, 219.819 ), Vector2( -82.614, 219.819 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "asda"
+length = 11.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Node2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 737.83, 210.565 ), Vector2( -38.8934, 216.624 ) ]
+}
+
+[node name="Background" type="Node2D"]
+scale = Vector2( 1.74837, 1.98039 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2( 737.83, 210.565 )
+
+[node name="man" type="AnimatedSprite" parent="Node2D"]
+position = Vector2( -42.3252, -1.51483 )
+scale = Vector2( 0.2, 0.2 )
+frames = SubResource( 6 )
+animation = "run_man"
+speed_scale = 0.5
+playing = true
+flip_h = true
+
+[node name="robot" type="AnimatedSprite" parent="Node2D"]
+scale = Vector2( 0.2, 0.2 )
+frames = SubResource( 10 )
+animation = "run_robot"
+speed_scale = 0.7
+playing = true
+flip_h = true
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -82.6141, 263.031 )
+rotation = -1.5708
+frames = SubResource( 12 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimatedSprite"]
+stream = ExtResource( 4 )
+autoplay = true
+bus = "SFX"
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="AnimatedSprite"]
+autoplay = "bullet"
+anims/RESET = SubResource( 17 )
+anims/bullet = SubResource( 16 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "asda"
+anims/asda = SubResource( 2 )

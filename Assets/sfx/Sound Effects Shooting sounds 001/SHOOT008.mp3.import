@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/SHOOT008.mp3-d881d49e75f76e08c0b55b1c869f84f1.mp3str"
+
+[deps]
+
+source_file="res://Assets/sfx/Sound Effects Shooting sounds 001/SHOOT008.mp3"
+dest_files=[ "res://.import/SHOOT008.mp3-d881d49e75f76e08c0b55b1c869f84f1.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

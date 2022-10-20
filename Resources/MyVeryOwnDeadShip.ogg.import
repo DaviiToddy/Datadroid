@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/MyVeryOwnDeadShip.ogg-7453f00161c933b11618619d6c0880f0.oggstr"
+
+[deps]
+
+source_file="res://Resources/MyVeryOwnDeadShip.ogg"
+dest_files=[ "res://.import/MyVeryOwnDeadShip.ogg-7453f00161c933b11618619d6c0880f0.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
