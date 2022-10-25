@@ -1,12 +1,13 @@
 extends KinematicBody2D
 
 enum PLAYER_STATES {
-	WALK, RUNNING, IDLE
+	DASH, WALK, RUNNING, IDLE
 }
 var current_state = PLAYER_STATES.IDLE
 
 const SPEED_WALK = 400
 const SPEED_RUN = 700
+const MULTIPLIER_DASH = 2.5
 const FRICTION = 600
 
 var speed = SPEED_WALK
@@ -16,21 +17,32 @@ func _ready() -> void:
 	randomize()
 
 func _physics_process(delta):
-	if Input.is_action_just_pressed("ui_accept"):
-		var rand_int = randi() % 4
-		$Emotions.current_state = rand_int
-		$Emotions.changeState()
-	
 	move_player(delta)
 
-func move_player(delta: float):
+func change_State(change: bool):
 	
-	if Input.is_action_pressed("move_run"):
+	if not change:
+		return
+	
+	if Input.is_action_just_pressed("move_dash"):
+		var last_state = current_state
+		
+		current_state = PLAYER_STATES.DASH
+		speed = MULTIPLIER_DASH
+		velocity = velocity * speed
+		
+		yield(get_tree().create_timer(0.8), "timeout")
+		current_state = last_state
+	elif Input.is_action_pressed("move_run"):
 		current_state = PLAYER_STATES.RUNNING
 		speed = SPEED_RUN
 	else:
 		current_state = PLAYER_STATES.WALK
 		speed = SPEED_WALK
+
+func move_player(delta: float):
+	
+	change_State(current_state != PLAYER_STATES.DASH)
 	
 	var input_vector: = Vector2(
 		Input.get_axis("move_left", "move_right"), 
@@ -59,6 +71,9 @@ func animate():
 		$Sprite.flip_h = true
 	
 	match current_state:
+		PLAYER_STATES.DASH:
+			$Sprite.play("dash")
+			yield($Sprite, "animation_finished")
 		PLAYER_STATES.IDLE:
 			$Sprite.play("idle")
 		PLAYER_STATES.WALK:

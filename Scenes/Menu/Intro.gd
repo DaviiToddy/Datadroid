@@ -2,6 +2,13 @@ extends CanvasLayer
 
 export(PackedScene) onready var main_menu
 
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("ui_cancel") \
+	or Input.is_action_just_pressed("ui_accept"):
+		$"Transição/AnimationPlayer".play_backwards("fade_out")
+		yield($"Transição/AnimationPlayer", "animation_finished")
+		get_tree().change_scene_to(main_menu)
+
 func _ready() -> void:
 	$Label.hide()
 	$Label2.hide()
