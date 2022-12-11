@@ -53,6 +53,7 @@ class WanderState extends State:
 		wander_point = wander_point + wander_dir
 		var velocity = (wander_point - owner.position).normalized() * owner.MAX_SPEED 
 		owner.velocity = velocity
+		
 	func get_type():
 		return State_t.WANDERING
 	
@@ -75,6 +76,9 @@ class AttackState extends State:
 		#else:
 		#	input = Vector2(sin(timer), sin(timer)).rotated(((owner.oponent.position - owner.position)).angle())
 		owner.velocity = owner.velocity.linear_interpolate(input * owner.MAX_SPEED, dt)
+		
+		if int(timer) % 1 == 0:
+			owner.get_node("Weapon").shoot(owner, owner.position, (owner.oponent.position - owner.position).normalized())
 	
 	func get_type():
 		return State_t.ATTACKING
