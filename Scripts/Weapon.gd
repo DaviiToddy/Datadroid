@@ -1,6 +1,6 @@
 extends Node2D
 
-export var rpm = 50
+export var rpm = 65
 export(PackedScene) var bullet_scene = null
 
 var delay = 0
@@ -12,7 +12,7 @@ func _process(delta):
 	delay += delta
 	
 func shoot(owner, position, direction):
-	if delay < 60/rpm:
+	if delay < 60.0/rpm:
 		return
 		
 	var bullet = bullet_scene.instance()
