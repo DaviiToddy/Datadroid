@@ -1,0 +1,83 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://src/scripts/entidades/personagens/Player.gd" type="Script" id=1]
+[ext_resource path="res://src/assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_walk7.png" type="Texture" id=2]
+[ext_resource path="res://src/assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_walk5.png" type="Texture" id=3]
+[ext_resource path="res://src/assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_walk6.png" type="Texture" id=4]
+[ext_resource path="res://src/assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_run2.png" type="Texture" id=5]
+[ext_resource path="res://src/assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_walk0.png" type="Texture" id=6]
+[ext_resource path="res://src/assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_walk1.png" type="Texture" id=7]
+[ext_resource path="res://src/assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_walk2.png" type="Texture" id=8]
+[ext_resource path="res://src/assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_walk3.png" type="Texture" id=9]
+[ext_resource path="res://src/assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_walk4.png" type="Texture" id=10]
+[ext_resource path="res://src/assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_run0.png" type="Texture" id=11]
+[ext_resource path="res://src/assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_idle.png" type="Texture" id=12]
+[ext_resource path="res://src/assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_run1.png" type="Texture" id=13]
+[ext_resource path="res://src/scenes/mapas/TestMap.tscn" type="PackedScene" id=14]
+[ext_resource path="res://src/assets/sprites/personagens/bonecos_cartoon/Male person/Tilesheet/character_malePerson_sheet.png" type="Texture" id=15]
+
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 15 )
+region = Rect2( 96, 256, 96, 128 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 15 )
+region = Rect2( 96, 128, 96, 128 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 15 )
+region = Rect2( 384, 384, 96, 128 )
+
+[sub_resource type="SpriteFrames" id=12]
+animations = [ {
+"frames": [ SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
+"loop": false,
+"name": "dash",
+"speed": 6.0
+}, {
+"frames": [ ExtResource( 12 ) ],
+"loop": false,
+"name": "idle",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 13 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "run",
+"speed": 16.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "walk",
+"speed": 16.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=13]
+radius = 15.0
+height = 24.0
+
+[node name="Player" type="KinematicBody2D"]
+position = Vector2( 318, 232 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 12 )
+animation = "idle"
+playing = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 0, -50 )
+current = true
+process_mode = 0
+limit_smoothed = true
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 0, 37 )
+shape = SubResource( 13 )
+one_way_collision = true

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/SHOOT008.mp3-aa3ea2e374612d02ce3b0b8ecf8b163c.mp3str"
+
+[deps]
+
+source_file="res://src/assets/sfx/tiros/SHOOT008.mp3"
+dest_files=[ "res://.import/SHOOT008.mp3-aa3ea2e374612d02ce3b0b8ecf8b163c.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

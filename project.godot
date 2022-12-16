@@ -9,25 +9,13 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node2D",
-"class": "EmoteClass",
-"language": "GDScript",
-"path": "res://Scripts/Emotions.gd"
-}, {
 "base": "Resource",
-"class": "GameStates",
+"class": "ResDadosExecucao",
 "language": "GDScript",
-"path": "res://Scripts/GameStates.gd"
-}, {
-"base": "CanvasLayer",
-"class": "UI",
-"language": "GDScript",
-"path": "res://Scenes/Global/UI.gd"
+"path": "res://src/scripts/ResDadosExecucao.gd"
 } ]
 _global_script_class_icons={
-"EmoteClass": "",
-"GameStates": "",
-"UI": ""
+"ResDadosExecucao": ""
 }
 
 [application]
@@ -36,8 +24,8 @@ config/name="Datadroid"
 config/description="He's not dead yet...
 
 v0.1"
-run/main_scene="res://Scenes/Intro.tscn"
-config/icon="res://icon.png"
+run/main_scene="res://src/scenes/mapas/TestMap.tscn"
+config/icon="res://src/icon.png"
 
 [display]
 
@@ -102,11 +90,6 @@ move_run={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777237,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
-ui_esq={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777217,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
-}
 move_dash={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
@@ -123,4 +106,4 @@ quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
 gles2/compatibility/enable_high_float.Android=true
-environment/default_environment="res://default_env.tres"
+environment/default_environment="res://src/default_env.tres"

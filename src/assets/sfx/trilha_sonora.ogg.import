@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/trilha_sonora.ogg-962695b29d5b4866f925bfd4c022cc71.oggstr"
+
+[deps]
+
+source_file="res://src/assets/sfx/trilha_sonora.ogg"
+dest_files=[ "res://.import/trilha_sonora.ogg-962695b29d5b4866f925bfd4c022cc71.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
