@@ -7,7 +7,7 @@
 # Make sure your project is configured for Web export
 # to the path `build/web`.
 
-name: 'Publish to GitHub Pages'
+name: 'Generate Github Pages Automatically'
 
 env:
   GODOT_VERSION: 3.5 # Remember to manually set image to this version below.
@@ -16,19 +16,19 @@ on:
   workflow_dispatch:
   push:
     branches:
-      #- main#This is commented for now to avoid errors
+      #- main#This is commented to avoid errors and bug on main branch
       - build-test
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     container:
       image: barichello/godot-ci:3.5
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2.6.0
 
       - name: Move HTML5 templates into position
         run: |
@@ -41,7 +41,7 @@ jobs:
         run: godot -v --export "HTML5" ../build/web/index.html project/project.godot
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v3.9.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build/web
