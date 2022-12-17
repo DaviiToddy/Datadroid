@@ -3,8 +3,6 @@ build
 
 # Godot-specific ignores
 project/.import/
-project/export.cfg
-project/export_presets.cfg
 
 # Mono-specific ignores
 project/.mono/
