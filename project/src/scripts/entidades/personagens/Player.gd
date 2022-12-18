@@ -1,4 +1,4 @@
-extends KinematicBody2D
+class_name Player extends KinematicBody2D
 
 enum PLAYER_STATES {
 	DASH, WALK, RUNNING, IDLE

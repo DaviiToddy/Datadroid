@@ -78,3 +78,11 @@ visible = false
 position = Vector2( 0, 37 )
 shape = SubResource( 13 )
 one_way_collision = true
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Status" type="Control" parent="UI"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+focus_mode = 2
