@@ -1,0 +1,100 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://src/scripts/entidades/itens/armas/Pistol.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/itens e coletaveis/arma/pistola_spritesheet.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/itens e coletaveis/arma/gunfire.png" type="Texture" id=3]
+[ext_resource path="res://assets/sfx/tiros/SHOOT005.mp3" type="AudioStream" id=4]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 2 )
+region = Rect2( 128, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 2 )
+region = Rect2( 160, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 2 )
+region = Rect2( 192, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ SubResource( 1 ) ],
+"loop": false,
+"name": "idle",
+"speed": 0.0
+}, {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 1 ) ],
+"loop": false,
+"name": "shoot",
+"speed": 16.0
+} ]
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 3 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 3 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=12]
+animations = [ {
+"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
+"loop": false,
+"name": "fire",
+"speed": 6.0
+} ]
+
+[node name="Pistol" type="Node2D"]
+script = ExtResource( 1 )
+ammo = 30
+magazine_max_capacity = 12
+magazine_ammo = 12
+damage = 8
+gunSprite = NodePath("AnimatedSprite")
+gunFlameSprite = NodePath("Position2D/AnimatedSprite")
+gunTimerShoot = NodePath("Timer")
+gunSoundStream = NodePath("AudioStreamPlayer2D")
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 8 )
+animation = "shoot"
+frame = 7
+playing = true
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 17, -4 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Position2D"]
+frames = SubResource( 12 )
+animation = "fire"
+frame = 2
+playing = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )

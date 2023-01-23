@@ -1,0 +1,602 @@
+[gd_scene load_steps=46 format=2]
+
+[ext_resource path="res://src/scripts/menu/MainMenuManager.gd" type="Script" id=1]
+[ext_resource path="res://src/scripts/menu/MainScreen.gd" type="Script" id=2]
+[ext_resource path="res://src/scripts/menu/ArmoryScreen.gd" type="Script" id=3]
+[ext_resource path="res://assets/shared/logo.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/menu principal/armory/guns/robot_guns_3.png" type="Texture" id=5]
+[ext_resource path="res://assets/sprites/menu principal/armory/guns/robot_guns_0.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/menu principal/armory/guns/robot_guns_4.png" type="Texture" id=7]
+[ext_resource path="res://assets/sprites/menu principal/armory/guns/robot_guns_1.png" type="Texture" id=8]
+[ext_resource path="res://assets/sprites/menu principal/armory/guns/robot_guns_2.png" type="Texture" id=9]
+[ext_resource path="res://assets/sprites/menu principal/robo/robot.png" type="Texture" id=10]
+[ext_resource path="res://src/themes/Armory.tres" type="Theme" id=11]
+[ext_resource path="res://src/themes/MainMenu.tres" type="Theme" id=12]
+[ext_resource path="res://src/scenes/mapas/TestMap.tscn" type="PackedScene" id=13]
+
+[sub_resource type="Animation" id=43]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Robot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1394, 318 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Robot:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Robot:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Logo:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ColorRect:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath(".:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=44]
+resource_name = "popup_menu"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Robot:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( -2, -0.5 ),
+"update": 0,
+"values": [ Vector2( 1853, 254 ), Vector2( 739, 349 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Robot:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 2,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.3, 1 ),
+"transitions": PoolRealArray( -2, -0.5 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 10 )
+region = Rect2( 0, 0, 750, 850 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 10 )
+region = Rect2( 750, 0, 750, 850 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 10 )
+region = Rect2( 1500, 0, 750, 850 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 10 )
+region = Rect2( 2250, 0, 750, 850 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 10 )
+region = Rect2( 3000, 0, 750, 850 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 10 )
+region = Rect2( 3750, 0, 750, 850 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 10 )
+region = Rect2( 4500, 0, 750, 850 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 10 )
+region = Rect2( 5250, 0, 750, 850 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 10 )
+region = Rect2( 6000, 0, 750, 850 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 10 )
+region = Rect2( 6750, 0, 750, 850 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 10 )
+region = Rect2( 7500, 0, 750, 850 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 10 )
+region = Rect2( 8250, 0, 750, 850 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 10 )
+region = Rect2( 9000, 0, 750, 850 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 10 )
+region = Rect2( 9750, 0, 750, 850 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 10 )
+region = Rect2( 10500, 0, 750, 850 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 10 )
+region = Rect2( 11250, 0, 750, 850 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 10 )
+region = Rect2( 12000, 0, 750, 850 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 10 )
+region = Rect2( 12750, 0, 750, 850 )
+
+[sub_resource type="SpriteFrames" id=22]
+animations = [ {
+"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ) ],
+"loop": true,
+"name": "default",
+"speed": 9.0
+} ]
+
+[sub_resource type="StyleBoxFlat" id=47]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="StyleBoxFlat" id=48]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="StyleBoxFlat" id=49]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="StyleBoxFlat" id=45]
+
+[sub_resource type="Theme" id=46]
+Button/styles/hover = SubResource( 47 )
+Button/styles/normal = SubResource( 48 )
+Button/styles/pressed = SubResource( 49 )
+PopupDialog/styles/panel = SubResource( 45 )
+
+[sub_resource type="StyleBoxLine" id=39]
+color = Color( 1, 0.97879, 0.66196, 1 )
+grow_begin = 10.0
+grow_end = 10.0
+thickness = 10
+
+[sub_resource type="StyleBoxLine" id=40]
+color = Color( 1, 0.937255, 0, 1 )
+grow_begin = 10.0
+grow_end = 10.0
+thickness = 10
+
+[sub_resource type="StyleBoxLine" id=41]
+color = Color( 1, 0, 0.678431, 1 )
+grow_begin = 10.0
+grow_end = 10.0
+thickness = 10
+
+[sub_resource type="Theme" id=42]
+Button/styles/hover = SubResource( 39 )
+Button/styles/normal = SubResource( 40 )
+Button/styles/pressed = SubResource( 41 )
+
+[sub_resource type="Animation" id=23]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Armory/HBoxContainer/Menu:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Armory/HBoxContainer/Pixel/Robot:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -250, -273 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Armory/HBoxContainer/Pixel/Robot:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("HBoxContainer/Pixel/Robot:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 273, 337 ) ]
+}
+
+[sub_resource type="Animation" id=24]
+resource_name = "popup_menu"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 2.79397e-07, 1 ),
+"transitions": PoolRealArray( -2, -0.5 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HBoxContainer/Pixel/Robot:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( -2, -0.5 ),
+"update": 0,
+"values": [ Vector2( -250, -273 ), Vector2( 273, 337 ) ]
+}
+
+[node name="Node2D" type="Node2D"]
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource( 1 )
+current_screen = NodePath("Armory")
+main_scene = ExtResource( 13 )
+
+[node name="DefaultPanelColor" type="ColorRect" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="MainScreen" type="Control" parent="UI"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 12 )
+script = ExtResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="UI/MainScreen"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/MainScreen"]
+anims/RESET = SubResource( 43 )
+anims/popup_menu = SubResource( 44 )
+
+[node name="Logo" type="Sprite" parent="UI/MainScreen"]
+position = Vector2( 297, 147 )
+scale = Vector2( 0.347917, 0.42037 )
+texture = ExtResource( 4 )
+
+[node name="Robot" type="AnimatedSprite" parent="UI/MainScreen"]
+position = Vector2( 1394, 318 )
+scale = Vector2( 0.6, 0.6 )
+frames = SubResource( 22 )
+frame = 4
+playing = true
+flip_h = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainScreen"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 90.0
+margin_top = 240.0
+margin_right = -568.0
+margin_bottom = -52.0
+size_flags_stretch_ratio = 1.15
+
+[node name="Button" type="Button" parent="UI/MainScreen/VBoxContainer"]
+margin_right = 366.0
+margin_bottom = 58.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Play"
+
+[node name="Button2" type="Button" parent="UI/MainScreen/VBoxContainer"]
+margin_top = 62.0
+margin_right = 366.0
+margin_bottom = 120.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Armory"
+
+[node name="Button3" type="Button" parent="UI/MainScreen/VBoxContainer"]
+margin_top = 124.0
+margin_right = 366.0
+margin_bottom = 183.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Preferences"
+
+[node name="Button4" type="Button" parent="UI/MainScreen/VBoxContainer"]
+margin_top = 187.0
+margin_right = 366.0
+margin_bottom = 245.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "About"
+
+[node name="Button5" type="Button" parent="UI/MainScreen/VBoxContainer"]
+margin_top = 249.0
+margin_right = 366.0
+margin_bottom = 308.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Quit"
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="UI/MainScreen"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -183.0
+margin_top = -43.75
+margin_right = 183.0
+margin_bottom = 43.75
+rect_min_size = Vector2( 250, 87.5 )
+theme = SubResource( 46 )
+window_title = "Quit Game"
+dialog_text = "Do you really want to quit the game?"
+
+[node name="Armory" type="Control" parent="UI"]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 11 )
+script = ExtResource( 3 )
+
+[node name="ColorRect" type="ColorRect" parent="UI/Armory"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.121569, 0, 0.156863, 0.729412 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Armory"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 26.0
+margin_top = 14.0
+margin_right = -32.0
+margin_bottom = -20.0
+alignment = 1
+
+[node name="Pixel" type="Control" parent="UI/Armory/HBoxContainer"]
+margin_right = 458.0
+margin_bottom = 566.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Robot" type="AnimatedSprite" parent="UI/Armory/HBoxContainer/Pixel"]
+position = Vector2( 273, 337 )
+scale = Vector2( 0.6, 0.6 )
+frames = SubResource( 22 )
+frame = 2
+playing = true
+
+[node name="Menu" type="TabContainer" parent="UI/Armory/HBoxContainer"]
+margin_left = 462.0
+margin_right = 966.0
+margin_bottom = 566.0
+size_flags_horizontal = 15
+size_flags_vertical = 15
+size_flags_stretch_ratio = 1.1
+
+[node name="Gun" type="Panel" parent="UI/Armory/HBoxContainer/Menu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 34.0
+rect_pivot_offset = Vector2( -566, 358 )
+
+[node name="HBoxContainer" type="ItemList" parent="UI/Armory/HBoxContainer/Menu/Gun"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 15
+size_flags_vertical = 15
+custom_colors/font_color_selected = Color( 1, 0.0666667, 0.760784, 1 )
+custom_colors/font_color = Color( 1, 0.945098, 0.345098, 1 )
+allow_reselect = true
+max_columns = 2
+fixed_column_width = 230
+icon_mode = 0
+fixed_icon_size = Vector2( 230, 100 )
+
+[node name="Button" type="Button" parent="UI/Armory/HBoxContainer/Menu/Gun"]
+margin_left = 60.0
+margin_top = 437.0
+margin_right = 460.0
+margin_bottom = 517.0
+theme = SubResource( 42 )
+text = "Select"
+
+[node name="Arm" type="Panel" parent="UI/Armory/HBoxContainer/Menu"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="HBoxContainer" type="ItemList" parent="UI/Armory/HBoxContainer/Menu/Arm"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 15
+size_flags_vertical = 15
+custom_colors/guide_color = Color( 0, 0.435294, 0.862745, 1 )
+custom_colors/font_color_selected = Color( 1, 0.0666667, 0.760784, 1 )
+custom_colors/font_color = Color( 1, 0.945098, 0.345098, 1 )
+items = [ "Item 0", ExtResource( 6 ), false, "Item 1", ExtResource( 8 ), false, "Item 2", ExtResource( 9 ), false, "Item 3", ExtResource( 5 ), false, "Item 4", ExtResource( 7 ), false, "Item 5", ExtResource( 6 ), false, "Item 6", ExtResource( 8 ), false ]
+allow_reselect = true
+max_columns = 2
+fixed_column_width = 230
+icon_mode = 0
+fixed_icon_size = Vector2( 230, 100 )
+
+[node name="Leg" type="Panel" parent="UI/Armory/HBoxContainer/Menu"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="HBoxContainer" type="ItemList" parent="UI/Armory/HBoxContainer/Menu/Leg"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 15
+size_flags_vertical = 15
+custom_colors/guide_color = Color( 0, 0.435294, 0.862745, 1 )
+custom_colors/font_color_selected = Color( 1, 0.0666667, 0.760784, 1 )
+custom_colors/font_color = Color( 1, 0.945098, 0.345098, 1 )
+items = [ "Item 0", ExtResource( 6 ), false, "Item 1", ExtResource( 8 ), false, "Item 2", ExtResource( 9 ), false, "Item 3", ExtResource( 5 ), false, "Item 4", ExtResource( 7 ), false, "Item 5", ExtResource( 6 ), false, "Item 6", ExtResource( 8 ), false ]
+allow_reselect = true
+max_columns = 2
+fixed_column_width = 230
+icon_mode = 0
+fixed_icon_size = Vector2( 230, 100 )
+
+[node name="PopupDialog" type="PopupDialog" parent="UI/Armory"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -150.0
+margin_top = -75.0
+margin_right = 150.0
+margin_bottom = 75.0
+
+[node name="Label" type="Label" parent="UI/Armory/PopupDialog"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 0.701961, 0, 1, 1 )
+text = "Item Selected"
+align = 1
+valign = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Armory"]
+anims/RESET = SubResource( 23 )
+anims/popup_menu = SubResource( 24 )
+
+[node name="Button" type="Button" parent="UI/Armory"]
+margin_left = 10.0
+margin_top = 13.0
+margin_right = 30.0
+margin_bottom = 33.0
+rect_scale = Vector2( 4.8584, 4.54325 )
+text = "<"
+flat = true
+
+[node name="Timer" type="Timer" parent="UI"]
+wait_time = 1.2
+one_shot = true
+
+[connection signal="pressed" from="UI/MainScreen/VBoxContainer/Button" to="UI/MainScreen" method="_on_play_button_pressed"]
+[connection signal="pressed" from="UI/MainScreen/VBoxContainer/Button2" to="UI/MainScreen" method="_on_armory_button_pressed"]
+[connection signal="pressed" from="UI/MainScreen/VBoxContainer/Button5" to="UI/MainScreen" method="_on_quit_button_pressed"]
+[connection signal="confirmed" from="UI/MainScreen/ConfirmationDialog" to="UI" method="_on_quit_game_confirmed"]
+[connection signal="pressed" from="UI/Armory/HBoxContainer/Menu/Gun/Button" to="UI/Armory" method="_on_Button_select_pressed"]
+[connection signal="pressed" from="UI/Armory/Button" to="UI/Armory" method="_on_Button_pressed"]

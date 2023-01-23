@@ -2,8 +2,8 @@ extends Resource
 
 class_name ResDadosExecucao
 
-enum ESTADOS {
+enum States {
 	GAMEPLAY, PAUSE, MENU
 }
 
-export var estado_atual = STATES.GAMEPLAY
+export(States) var estado_atual = States.GAMEPLAY
