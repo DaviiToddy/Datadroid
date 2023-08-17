@@ -1,0 +1,90 @@
+[gd_resource type="Theme" load_steps=13 format=2]
+
+[sub_resource type="StyleBoxFlat" id=47]
+bg_color = Color( 0.945098, 1, 0.0470588, 1 )
+corner_detail = 1
+
+[sub_resource type="StyleBoxLine" id=46]
+color = Color( 0.945098, 1, 0.0470588, 1 )
+grow_begin = -50.0
+grow_end = -50.0
+thickness = 10
+vertical = true
+
+[sub_resource type="StyleBoxFlat" id=44]
+bg_color = Color( 1, 0, 0.501961, 1 )
+
+[sub_resource type="StyleBoxFlat" id=33]
+bg_color = Color( 0.282353, 0.0431373, 0.215686, 0.784314 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="Gradient" id=30]
+offsets = PoolRealArray( 0.55914, 0.612903, 1 )
+colors = PoolColorArray( 0.964706, 0, 1, 0, 0.952174, 0.802993, 0.136364, 0.965775, 0.950195, 0.929781, 0, 1 )
+
+[sub_resource type="GradientTexture2D" id=31]
+gradient = SubResource( 30 )
+fill_to = Vector2( 0, 1 )
+
+[sub_resource type="StyleBoxTexture" id=32]
+texture = SubResource( 31 )
+region_rect = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="StyleBoxFlat" id=34]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="StyleBoxFlat" id=35]
+bg_color = Color( 1, 0.843137, 0, 0.8 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 1, 0, 0.505882, 1 )
+border_blend = true
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+corner_detail = 10
+shadow_color = Color( 1, 0, 0.568627, 0.282353 )
+shadow_size = 20
+
+[sub_resource type="StyleBoxFlat" id=36]
+bg_color = Color( 0.690196, 0.0745098, 0.0745098, 0 )
+
+[sub_resource type="StyleBoxFlat" id=37]
+content_margin_left = 30.0
+content_margin_right = 30.0
+bg_color = Color( 1, 0, 0.560784, 0.490196 )
+border_width_top = 10
+border_color = Color( 0.45098, 0.45098, 0.45098, 0 )
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id=38]
+content_margin_left = 30.0
+content_margin_right = 30.0
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+bg_color = Color( 1, 0.866667, 0, 1 )
+
+[resource]
+Button/colors/font_color = Color( 1, 1, 1, 1 )
+Button/colors/font_color_focus = Color( 0.945098, 1, 0.0470588, 1 )
+Button/colors/font_color_hover = Color( 0, 0, 0, 1 )
+Button/colors/font_color_pressed = Color( 0, 0, 0, 1 )
+Button/styles/hover = SubResource( 47 )
+Button/styles/normal = SubResource( 46 )
+Button/styles/pressed = SubResource( 44 )
+ItemList/styles/bg = SubResource( 33 )
+ItemList/styles/selected = SubResource( 32 )
+ItemList/styles/selected_focus = SubResource( 32 )
+Panel/styles/panel = SubResource( 34 )
+PopupDialog/styles/panel = SubResource( 35 )
+TabContainer/colors/font_color_bg = Color( 1, 0.901961, 0, 1 )
+TabContainer/colors/font_color_fg = Color( 1, 0, 0.619608, 1 )
+TabContainer/styles/panel = SubResource( 36 )
+TabContainer/styles/tab_bg = SubResource( 37 )
+TabContainer/styles/tab_fg = SubResource( 38 )

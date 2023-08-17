@@ -1,19 +1,20 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://src/scripts/entidades/personagens/Player.gd" type="Script" id=1]
-[ext_resource path="res://src/assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_walk7.png" type="Texture" id=2]
-[ext_resource path="res://src/assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_walk5.png" type="Texture" id=3]
-[ext_resource path="res://src/assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_walk6.png" type="Texture" id=4]
-[ext_resource path="res://src/assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_run2.png" type="Texture" id=5]
-[ext_resource path="res://src/assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_walk0.png" type="Texture" id=6]
-[ext_resource path="res://src/assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_walk1.png" type="Texture" id=7]
-[ext_resource path="res://src/assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_walk2.png" type="Texture" id=8]
-[ext_resource path="res://src/assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_walk3.png" type="Texture" id=9]
-[ext_resource path="res://src/assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_walk4.png" type="Texture" id=10]
-[ext_resource path="res://src/assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_run0.png" type="Texture" id=11]
-[ext_resource path="res://src/assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_idle.png" type="Texture" id=12]
-[ext_resource path="res://src/assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_run1.png" type="Texture" id=13]
-[ext_resource path="res://src/assets/sprites/personagens/bonecos_cartoon/Male person/Tilesheet/character_malePerson_sheet.png" type="Texture" id=15]
+[ext_resource path="res://assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_walk7.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_walk5.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_walk6.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_run2.png" type="Texture" id=5]
+[ext_resource path="res://assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_walk0.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_walk1.png" type="Texture" id=7]
+[ext_resource path="res://assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_walk2.png" type="Texture" id=8]
+[ext_resource path="res://assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_walk3.png" type="Texture" id=9]
+[ext_resource path="res://assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_walk4.png" type="Texture" id=10]
+[ext_resource path="res://assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_run0.png" type="Texture" id=11]
+[ext_resource path="res://assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_idle.png" type="Texture" id=12]
+[ext_resource path="res://assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_run1.png" type="Texture" id=13]
+[ext_resource path="res://assets/sprites/personagens/bonecos_cartoon/Male person/Tilesheet/character_malePerson_sheet.png" type="Texture" id=15]
+[ext_resource path="res://src/icon.png" type="Texture" id=17]
 
 [sub_resource type="AtlasTexture" id=14]
 atlas = ExtResource( 15 )
@@ -54,6 +55,161 @@ animations = [ {
 radius = 15.0
 height = 24.0
 
+[sub_resource type="Animation" id=18]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.166667, 0.333333 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "dash" ]
+}
+
+[sub_resource type="Animation" id=19]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "idle" ]
+}
+
+[sub_resource type="Animation" id=20]
+length = 0.1875
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0625, 0.125 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "run" ]
+}
+
+[sub_resource type="Animation" id=21]
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0625, 0.125, 0.1875, 0.25, 0.3125, 0.375, 0.4375 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "walk" ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=22]
+animation = "dash"
+
+[sub_resource type="AnimationNodeAnimation" id=23]
+animation = "idle"
+
+[sub_resource type="AnimationNodeAnimation" id=24]
+animation = "run"
+
+[sub_resource type="AnimationNodeAnimation" id=25]
+animation = "walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=26]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=27]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=28]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=29]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=30]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=31]
+switch_mode = 2
+auto_advance = true
+advance_condition = "is_dash_timeout"
+
+[sub_resource type="AnimationNodeStateMachine" id=32]
+states/dash/node = SubResource( 22 )
+states/dash/position = Vector2( 328.018, 235.8 )
+states/idle/node = SubResource( 23 )
+states/idle/position = Vector2( 161.4, 136.6 )
+states/run/node = SubResource( 24 )
+states/run/position = Vector2( 507.16, 86.936 )
+states/walk/node = SubResource( 25 )
+states/walk/position = Vector2( 328.6, 87 )
+transitions = [ "idle", "walk", SubResource( 26 ), "walk", "run", SubResource( 27 ), "idle", "dash", SubResource( 28 ), "run", "walk", SubResource( 29 ), "walk", "idle", SubResource( 30 ), "dash", "idle", SubResource( 31 ) ]
+start_node = "idle"
+graph_offset = Vector2( -61, -21 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=33]
+
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
 __meta__ = {
@@ -65,9 +221,22 @@ frames = SubResource( 12 )
 animation = "idle"
 playing = true
 
+[node name="Icon" type="Sprite" parent="."]
+modulate = Color( 0.882353, 1, 0, 0.32549 )
+texture = ExtResource( 17 )
+
+[node name="Icon2" type="Sprite" parent="."]
+modulate = Color( 0, 0.443137, 1, 0.32549 )
+texture = ExtResource( 17 )
+
+[node name="Icon3" type="Sprite" parent="."]
+modulate = Color( 1, 0, 0, 0.32549 )
+texture = ExtResource( 17 )
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 0, -50 )
 current = true
+zoom = Vector2( 1.45, 1.45 )
 process_mode = 0
 limit_smoothed = true
 editor_draw_limits = true
@@ -78,3 +247,22 @@ visible = false
 position = Vector2( 0, 37 )
 shape = SubResource( 13 )
 one_way_collision = true
+
+[node name="DashTimer" type="Timer" parent="."]
+wait_time = 0.8
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/dash = SubResource( 18 )
+anims/idle = SubResource( 19 )
+anims/run = SubResource( 20 )
+anims/walk = SubResource( 21 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 32 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 33 )
+parameters/conditions/is_dash_timeout = true
+
+[connection signal="timeout" from="DashTimer" to="." method="_on_DashTimer_timeout"]

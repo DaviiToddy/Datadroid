@@ -1,126 +1,25 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/scenes/prefabs/personagens/Robot.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/assets/sprites/top_down_mapa_placeholder.jpg" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/mapa/test_map.jpg" type="Texture" id=2]
 [ext_resource path="res://src/scenes/prefabs/personagens/Player.tscn" type="PackedScene" id=3]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 32, 32 )
 
 [node name="MapaTeste" type="Node2D"]
 
 [node name="Fundo" type="Sprite" parent="."]
 scale = Vector2( 3, 3 )
 texture = ExtResource( 2 )
-
-[node name="ColisoesMapa" type="Node2D" parent="."]
-visible = false
-
-[node name="Parede" type="StaticBody2D" parent="ColisoesMapa"]
-position = Vector2( 784, -217 )
-scale = Vector2( 14.234, 7.33567 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ColisoesMapa/Parede"]
-shape = SubResource( 1 )
-
-[node name="Parede2" type="StaticBody2D" parent="ColisoesMapa"]
-position = Vector2( 1196, 351 )
-scale = Vector2( 15.0033, 7.70318 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ColisoesMapa/Parede2"]
-shape = SubResource( 1 )
-
-[node name="Parede3" type="StaticBody2D" parent="ColisoesMapa"]
-position = Vector2( 1298, 99 )
-scale = Vector2( 15.0033, 8.23732 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ColisoesMapa/Parede3"]
-shape = SubResource( 1 )
-
-[node name="Parede4" type="StaticBody2D" parent="ColisoesMapa"]
-position = Vector2( 1818, -231 )
-scale = Vector2( 15.0033, 8.23732 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ColisoesMapa/Parede4"]
-shape = SubResource( 1 )
-
-[node name="Parede5" type="StaticBody2D" parent="ColisoesMapa"]
-position = Vector2( 958, -1193 )
-scale = Vector2( 15.0033, 8.23732 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ColisoesMapa/Parede5"]
-shape = SubResource( 1 )
-
-[node name="Parede6" type="StaticBody2D" parent="ColisoesMapa"]
-position = Vector2( 678, -1130 )
-scale = Vector2( 20.6892, 7.92905 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ColisoesMapa/Parede6"]
-shape = SubResource( 1 )
-
-[node name="Parede7" type="StaticBody2D" parent="ColisoesMapa"]
-position = Vector2( -1156, -1184 )
-scale = Vector2( 20.6892, 7.92905 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ColisoesMapa/Parede7"]
-shape = SubResource( 1 )
-
-[node name="Parede8" type="StaticBody2D" parent="ColisoesMapa"]
-position = Vector2( -404, -1126 )
-scale = Vector2( 8.66097, 7.92905 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ColisoesMapa/Parede8"]
-shape = SubResource( 1 )
-
-[node name="Parede9" type="StaticBody2D" parent="ColisoesMapa"]
-position = Vector2( -1469, 317 )
-scale = Vector2( 17.5691, 18.475 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ColisoesMapa/Parede9"]
-shape = SubResource( 1 )
-
-[node name="Parede10" type="StaticBody2D" parent="ColisoesMapa"]
-position = Vector2( 377, 987 )
-scale = Vector2( 40.1723, 9.44477 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ColisoesMapa/Parede10"]
-shape = SubResource( 1 )
-
-[node name="Parede11" type="StaticBody2D" parent="ColisoesMapa"]
-position = Vector2( 1531, 728 )
-scale = Vector2( 21.8166, 8.40355 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ColisoesMapa/Parede11"]
-shape = SubResource( 1 )
-
-[node name="Parede12" type="StaticBody2D" parent="ColisoesMapa"]
-position = Vector2( 2124, -704 )
-scale = Vector2( 21.8166, 8.40355 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ColisoesMapa/Parede12"]
-shape = SubResource( 1 )
-
-[node name="Parede13" type="StaticBody2D" parent="ColisoesMapa"]
-position = Vector2( -55, -1312 )
-scale = Vector2( 4.64726, 3.88512 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ColisoesMapa/Parede13"]
-shape = SubResource( 1 )
-
-[node name="Parede14" type="StaticBody2D" parent="ColisoesMapa"]
-position = Vector2( -1845, -604 )
-scale = Vector2( 5.02967, 11.0728 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ColisoesMapa/Parede14"]
-shape = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 
 [node name="Robot" parent="." instance=ExtResource( 1 )]
 position = Vector2( -32, 194 )
 collision_layer = 2
-collision_mask = 3
 player = NodePath("../Player")
-player_offset_speed_multiplier = 0.6
+player_offset_speed_multiplier = 0.4
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( -317, -305 )
 collision_layer = 2
-collision_mask = 3
