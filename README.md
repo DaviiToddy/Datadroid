@@ -1,7 +1,7 @@
 ![Hello There](./project/assets/shared/logo.png)
 
 ### Tags:
-`2D`|`Top-down`|`PixelArt`|`RogueLike`|`Survival`
+`2D` | `Top-down` | `PixelArt` | `RogueLike` | `Survival`
 
 ### Requisitos:
 - **Público alvo**: 13 a 15 anos
