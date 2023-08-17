@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://src/scripts/entidades/personagens/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_walk7.png" type="Texture" id=2]
@@ -13,9 +13,7 @@
 [ext_resource path="res://assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_run0.png" type="Texture" id=11]
 [ext_resource path="res://assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_idle.png" type="Texture" id=12]
 [ext_resource path="res://assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_run1.png" type="Texture" id=13]
-[ext_resource path="res://src/scenes/prefabs/itens/Inventory.gd" type="Script" id=14]
 [ext_resource path="res://assets/sprites/personagens/bonecos_cartoon/Male person/Tilesheet/character_malePerson_sheet.png" type="Texture" id=15]
-[ext_resource path="res://assets/fontes/unispace bd.ttf" type="DynamicFontData" id=16]
 [ext_resource path="res://src/icon.png" type="Texture" id=17]
 
 [sub_resource type="AtlasTexture" id=14]
@@ -56,11 +54,6 @@ animations = [ {
 [sub_resource type="CapsuleShape2D" id=13]
 radius = 15.0
 height = 24.0
-
-[sub_resource type="DynamicFont" id=17]
-size = 80
-use_filter = true
-font_data = ExtResource( 16 )
 
 [sub_resource type="Animation" id=18]
 length = 0.5
@@ -255,29 +248,9 @@ position = Vector2( 0, 37 )
 shape = SubResource( 13 )
 one_way_collision = true
 
-[node name="UI" type="CanvasLayer" parent="."]
-
-[node name="Status" type="Control" parent="UI"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-focus_mode = 2
-
-[node name="Label" type="Label" parent="UI/Status"]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -245.0
-margin_top = -97.0
-custom_fonts/font = SubResource( 17 )
-text = "00/00"
-
 [node name="DashTimer" type="Timer" parent="."]
 wait_time = 0.8
 one_shot = true
-
-[node name="Inventory" type="Node2D" parent="."]
-script = ExtResource( 14 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/dash = SubResource( 18 )

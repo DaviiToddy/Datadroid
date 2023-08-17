@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/robot_guns_3.png-91c657c276e406b775e8b0e73651fd88.stex"
+path="res://.import/test_map.jpg-b201b1e774edfe09908245af6a1a4e92.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/menu principal/armory/guns/robot_guns_3.png"
-dest_files=[ "res://.import/robot_guns_3.png-91c657c276e406b775e8b0e73651fd88.stex" ]
+source_file="res://assets/sprites/mapa/test_map.jpg"
+dest_files=[ "res://.import/test_map.jpg-b201b1e774edfe09908245af6a1a4e92.stex" ]
 
 [params]
 

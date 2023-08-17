@@ -9,37 +9,19 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Area2D",
-"class": "Collectable",
+"base": "Resource",
+"class": "Enums",
 "language": "GDScript",
-"path": "res://src/scripts/entidades/itens/model/Collectable.gd"
-}, {
-"base": "Node",
-"class": "GunAbstract",
-"language": "GDScript",
-"path": "res://src/scripts/entidades/itens/model/GunAbstract.gd"
-}, {
-"base": "GunAbstract",
-"class": "Pistol",
-"language": "GDScript",
-"path": "res://src/scripts/entidades/itens/armas/Pistol.gd"
+"path": "res://src/global/Enums.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
 "path": "res://src/scripts/entidades/personagens/Player.gd"
-}, {
-"base": "Resource",
-"class": "ResDadosExecucao",
-"language": "GDScript",
-"path": "res://src/scripts/ResDadosExecucao.gd"
 } ]
 _global_script_class_icons={
-"Collectable": "",
-"GunAbstract": "",
-"Pistol": "",
-"Player": "",
-"ResDadosExecucao": ""
+"Enums": "",
+"Player": ""
 }
 
 [application]
@@ -47,6 +29,7 @@ _global_script_class_icons={
 config/name="Datadroid"
 config/description="v0.0.1
 He's not dead yet..."
+run/main_scene="res://src/scenes/Main.tscn"
 boot_splash/show_image=false
 boot_splash/use_filter=false
 config/icon="res://assets/shared/logo.png"
