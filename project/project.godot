@@ -29,7 +29,7 @@ _global_script_class_icons={
 config/name="Datadroid"
 config/description="v0.0.1
 He's not dead yet..."
-run/main_scene="res://src/scenes/Main.tscn"
+run/main_scene="res://src/scenes/mapas/TestMap.tscn"
 boot_splash/show_image=false
 boot_splash/use_filter=false
 config/icon="res://assets/shared/logo.png"
