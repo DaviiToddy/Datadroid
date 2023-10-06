@@ -5,7 +5,6 @@ const SPEED_WALK = 400.0
 const SPEED_RUN = 700.0
 const DASH_MULTIPLIER = 3.0
 const INPUT_DEADZONE = 0.3
-const DASH_LENGTH_IN_SECONDS = 0.8
 
 var speed: = SPEED_WALK
 var velocity: = Vector2.ZERO
@@ -21,11 +20,6 @@ func _physics_process(delta) -> void:
 	actions_handler()
 	move_player(delta)
 
-func _debug_things(inp_vector: Vector2) -> void:
-	$Icon.position = velocity
-	$Icon2.position = inp_vector * speed
-	$Icon3.position = velocity * DASH_MULTIPLIER
-
 func actions_handler() -> void:
 	_flip_sprite()
 	if not animationTree.get("parameters/conditions/is_dash_timeout"):
@@ -40,8 +34,7 @@ func actions_handler() -> void:
 	if Input.is_action_pressed("move_run"):
 		_animate("run")
 		speed = SPEED_RUN
-		return
-	if velocity.length() <= INPUT_DEADZONE:
+	elif velocity.length() <= INPUT_DEADZONE:
 		_animate("idle")
 	else:
 		_animate("walk")
@@ -60,7 +53,6 @@ func move_player(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, input_vector.x, FRICTION * delta)
 		velocity.y = move_toward(velocity.y, input_vector.y, FRICTION * delta)
 	velocity = move_and_slide(velocity)
-	_debug_things(input_vector)
 
 func _animate(animation: String):
 	if not animation as String:

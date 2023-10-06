@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://src/scripts/entidades/personagens/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_walk7.png" type="Texture" id=2]
@@ -14,7 +14,6 @@
 [ext_resource path="res://assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_idle.png" type="Texture" id=12]
 [ext_resource path="res://assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_run1.png" type="Texture" id=13]
 [ext_resource path="res://assets/sprites/personagens/bonecos_cartoon/Male person/Tilesheet/character_malePerson_sheet.png" type="Texture" id=15]
-[ext_resource path="res://src/icon.png" type="Texture" id=17]
 
 [sub_resource type="AtlasTexture" id=14]
 atlas = ExtResource( 15 )
@@ -217,21 +216,10 @@ __meta__ = {
 }
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
+visible = false
 frames = SubResource( 12 )
 animation = "idle"
 playing = true
-
-[node name="Icon" type="Sprite" parent="."]
-modulate = Color( 0.882353, 1, 0, 0.32549 )
-texture = ExtResource( 17 )
-
-[node name="Icon2" type="Sprite" parent="."]
-modulate = Color( 0, 0.443137, 1, 0.32549 )
-texture = ExtResource( 17 )
-
-[node name="Icon3" type="Sprite" parent="."]
-modulate = Color( 1, 0, 0, 0.32549 )
-texture = ExtResource( 17 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 0, -50 )
@@ -243,7 +231,6 @@ editor_draw_limits = true
 editor_draw_drag_margin = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( 0, 37 )
 shape = SubResource( 13 )
 one_way_collision = true

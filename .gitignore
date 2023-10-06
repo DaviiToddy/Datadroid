@@ -1,5 +1,5 @@
 # Build files and folders
-build
+build/
 
 # Godot-specific ignores
 project/.import/
@@ -9,3 +9,6 @@ project/export_presets.cfg
 # Mono-specific ignores
 project/.mono/
 project/data_*/
+
+#Files extensions
+*.import
