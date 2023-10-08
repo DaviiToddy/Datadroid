@@ -9,10 +9,35 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "BaseCombat",
+"language": "GDScript",
+"path": "res://src/scripts/entidades/combatSystem/BaseCombat.gd"
+}, {
+"base": "Node2D",
+"class": "CombatHandler",
+"language": "GDScript",
+"path": "res://src/scripts/entidades/controllers/PlayerCombatHandler.gd"
+}, {
+"base": "Node2D",
+"class": "EnemyMock",
+"language": "GDScript",
+"path": "res://src/scripts/entidades/enemies/EnemyMock.gd"
+}, {
 "base": "Resource",
 "class": "Enums",
 "language": "GDScript",
 "path": "res://src/global/Enums.gd"
+}, {
+"base": "BaseCombat",
+"class": "FireArmCombat",
+"language": "GDScript",
+"path": "res://src/scripts/entidades/combatSystem/FireArmCombat.gd"
+}, {
+"base": "BaseCombat",
+"class": "MeleeCombat",
+"language": "GDScript",
+"path": "res://src/scripts/entidades/combatSystem/MeleeCombat.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Player",
@@ -20,7 +45,12 @@ _global_script_classes=[ {
 "path": "res://src/scripts/entidades/personagens/Player.gd"
 } ]
 _global_script_class_icons={
+"BaseCombat": "",
+"CombatHandler": "",
+"EnemyMock": "",
 "Enums": "",
+"FireArmCombat": "",
+"MeleeCombat": "",
 "Player": ""
 }
 
@@ -93,6 +123,12 @@ gun_reload={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":82,"unicode":0,"echo":false,"script":null)
  ]
 }
+
+[layer_names]
+
+2d_physics/layer_1="World"
+2d_physics/layer_2="Player"
+2d_physics/layer_3="Enemy"
 
 [physics]
 

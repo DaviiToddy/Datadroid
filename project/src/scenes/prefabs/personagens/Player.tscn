@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://src/scripts/entidades/personagens/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_walk7.png" type="Texture" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Parts HD/headFocus.png" type="Texture" id=14]
 [ext_resource path="res://assets/sprites/personagens/bonecos_cartoon/Male person/Tilesheet/character_malePerson_sheet.png" type="Texture" id=15]
 [ext_resource path="res://src/scripts/UI/HUD/HealthBar.gd" type="Script" id=16]
+[ext_resource path="res://src/scripts/entidades/controllers/PlayerCombatHandler.gd" type="Script" id=17]
 
 [sub_resource type="AtlasTexture" id=14]
 atlas = ExtResource( 15 )
@@ -211,6 +212,9 @@ graph_offset = Vector2( -61, -21 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=33]
 
+[sub_resource type="CircleShape2D" id=36]
+radius = 150.0
+
 [sub_resource type="StyleBoxFlat" id=34]
 bg_color = Color( 0.054902, 1, 0, 1 )
 border_width_top = 2
@@ -262,7 +266,7 @@ shape = SubResource( 13 )
 one_way_collision = true
 
 [node name="DashTimer" type="Timer" parent="."]
-wait_time = 0.8
+wait_time = 0.3
 one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -277,6 +281,20 @@ anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 33 )
 parameters/conditions/is_dash_timeout = true
+
+[node name="CombatHandler" type="Node2D" parent="."]
+script = ExtResource( 17 )
+
+[node name="MeleeTimer" type="Timer" parent="CombatHandler"]
+wait_time = 0.5
+one_shot = true
+
+[node name="MeleeCombatHandler" type="Area2D" parent="CombatHandler"]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CombatHandler/MeleeCombatHandler"]
+shape = SubResource( 36 )
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -310,3 +328,5 @@ scale = Vector2( 0.45283, 0.5 )
 texture = ExtResource( 14 )
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_DashTimer_timeout"]
+[connection signal="area_shape_entered" from="CombatHandler/MeleeCombatHandler" to="CombatHandler" method="_on_MeleeCombatHandler_area_shape_entered"]
+[connection signal="area_shape_exited" from="CombatHandler/MeleeCombatHandler" to="CombatHandler" method="_on_MeleeCombatHandler_area_shape_exited"]

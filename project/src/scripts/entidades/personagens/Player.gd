@@ -19,6 +19,7 @@ func _ready() -> void:
 func _physics_process(delta) -> void:
 	actions_handler()
 	move_player(delta)
+	$CombatHandler/MeleeCombatHandler.position = velocity * 0.5
 
 func actions_handler() -> void:
 	_flip_sprite()
