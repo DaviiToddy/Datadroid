@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=55 format=2]
 
 [ext_resource path="res://src/scripts/entidades/personagens/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_walk7.png" type="Texture" id=2]
@@ -13,7 +13,16 @@
 [ext_resource path="res://assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_run0.png" type="Texture" id=11]
 [ext_resource path="res://assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_idle.png" type="Texture" id=12]
 [ext_resource path="res://assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_run1.png" type="Texture" id=13]
+[ext_resource path="res://assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Parts HD/headFocus.png" type="Texture" id=14]
 [ext_resource path="res://assets/sprites/personagens/bonecos_cartoon/Male person/Tilesheet/character_malePerson_sheet.png" type="Texture" id=15]
+[ext_resource path="res://src/scripts/UI/HUD/HealthBar.gd" type="Script" id=16]
+[ext_resource path="res://src/scripts/entidades/controllers/PlayerCombatHandler.gd" type="Script" id=17]
+[ext_resource path="res://assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_kick.png" type="Texture" id=18]
+[ext_resource path="res://assets/sprites/ui/gameplay/crosshairs/crosshairs_tilesheet_white.png" type="Texture" id=19]
+[ext_resource path="res://assets/sprites/personagens/bonecos_cartoon/Male person/PNG/Poses/character_malePerson_attack0.png" type="Texture" id=20]
+
+[sub_resource type="CircleShape2D" id=36]
+radius = 150.0
 
 [sub_resource type="AtlasTexture" id=14]
 atlas = ExtResource( 15 )
@@ -39,6 +48,16 @@ animations = [ {
 "name": "idle",
 "speed": 1.0
 }, {
+"frames": [ ExtResource( 18 ) ],
+"loop": false,
+"name": "kick",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 20 ) ],
+"loop": false,
+"name": "punch",
+"speed": 1.0
+}, {
 "frames": [ ExtResource( 11 ), ExtResource( 13 ), ExtResource( 5 ) ],
 "loop": true,
 "name": "run",
@@ -54,7 +73,7 @@ animations = [ {
 radius = 15.0
 height = 24.0
 
-[sub_resource type="Animation" id=18]
+[sub_resource type="Animation" id=51]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -81,7 +100,7 @@ tracks/1/keys = {
 "values": [ "dash" ]
 }
 
-[sub_resource type="Animation" id=19]
+[sub_resource type="Animation" id=52]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -107,7 +126,61 @@ tracks/1/keys = {
 "values": [ "idle" ]
 }
 
-[sub_resource type="Animation" id=20]
+[sub_resource type="Animation" id=53]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "kick" ]
+}
+
+[sub_resource type="Animation" id=54]
+length = 0.15
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "punch" ]
+}
+
+[sub_resource type="Animation" id=55]
 length = 0.1875
 loop = true
 tracks/0/type = "value"
@@ -135,7 +208,7 @@ tracks/1/keys = {
 "values": [ "run" ]
 }
 
-[sub_resource type="Animation" id=21]
+[sub_resource type="Animation" id=56]
 length = 0.5
 loop = true
 tracks/0/type = "value"
@@ -169,6 +242,12 @@ animation = "dash"
 [sub_resource type="AnimationNodeAnimation" id=23]
 animation = "idle"
 
+[sub_resource type="AnimationNodeAnimation" id=45]
+animation = "kick"
+
+[sub_resource type="AnimationNodeAnimation" id=46]
+animation = "punch"
+
 [sub_resource type="AnimationNodeAnimation" id=24]
 animation = "run"
 
@@ -184,30 +263,77 @@ switch_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id=28]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=29]
-switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=30]
-switch_mode = 2
+xfade_time = 0.02
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=31]
 switch_mode = 2
 auto_advance = true
 advance_condition = "is_dash_timeout"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=47]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=48]
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=49]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=50]
+
 [sub_resource type="AnimationNodeStateMachine" id=32]
 states/dash/node = SubResource( 22 )
-states/dash/position = Vector2( 328.018, 235.8 )
+states/dash/position = Vector2( -34.1771, 85.4164 )
 states/idle/node = SubResource( 23 )
-states/idle/position = Vector2( 161.4, 136.6 )
+states/idle/position = Vector2( 148.733, 85.5351 )
+states/kick/node = SubResource( 45 )
+states/kick/position = Vector2( 229.996, 216.367 )
+states/punch/node = SubResource( 46 )
+states/punch/position = Vector2( 64.3232, 216.344 )
 states/run/node = SubResource( 24 )
-states/run/position = Vector2( 507.16, 86.936 )
+states/run/position = Vector2( 521.827, -17.9055 )
 states/walk/node = SubResource( 25 )
-states/walk/position = Vector2( 328.6, 87 )
-transitions = [ "idle", "walk", SubResource( 26 ), "walk", "run", SubResource( 27 ), "idle", "dash", SubResource( 28 ), "run", "walk", SubResource( 29 ), "walk", "idle", SubResource( 30 ), "dash", "idle", SubResource( 31 ) ]
+states/walk/position = Vector2( 301.933, -17.6809 )
+transitions = [ "idle", "walk", SubResource( 26 ), "walk", "run", SubResource( 27 ), "idle", "dash", SubResource( 28 ), "run", "walk", SubResource( 29 ), "walk", "idle", SubResource( 30 ), "dash", "idle", SubResource( 31 ), "idle", "punch", SubResource( 47 ), "punch", "idle", SubResource( 48 ), "kick", "idle", SubResource( 49 ), "idle", "kick", SubResource( 50 ) ]
 start_node = "idle"
-graph_offset = Vector2( -61, -21 )
+graph_offset = Vector2( -72, 56 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=33]
+
+[sub_resource type="StyleBoxFlat" id=34]
+bg_color = Color( 0.054902, 1, 0, 1 )
+border_width_top = 2
+border_width_right = 3
+border_width_bottom = 2
+border_color = Color( 1, 0.494118, 0, 1 )
+border_blend = true
+corner_radius_top_right = 500
+corner_radius_bottom_right = 500
+corner_detail = 16
+shadow_color = Color( 0, 1, 0.670588, 0.6 )
+shadow_size = 3
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id=35]
+bg_color = Color( 0, 0, 0, 0.247059 )
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+expand_margin_left = 2.0
+expand_margin_right = 2.0
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
+shadow_color = Color( 0, 0, 0, 0.329412 )
+shadow_size = 2
+
+[sub_resource type="StyleBoxLine" id=37]
+color = Color( 0, 0.486275, 1, 1 )
+thickness = 10
+
+[sub_resource type="StyleBoxLine" id=38]
+color = Color( 0, 0, 0, 0.247059 )
+thickness = 10
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -215,9 +341,37 @@ __meta__ = {
 "_edit_group_": true
 }
 
+[node name="CombatHandler" type="Node2D" parent="."]
+script = ExtResource( 17 )
+current_combat = 1
+
+[node name="MeleeTimer" type="Timer" parent="CombatHandler"]
+wait_time = 0.65
+one_shot = true
+
+[node name="FireTimer" type="Timer" parent="CombatHandler"]
+wait_time = 0.15
+one_shot = true
+
+[node name="MeleeCombatHandler" type="Area2D" parent="CombatHandler"]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CombatHandler/MeleeCombatHandler"]
+shape = SubResource( 36 )
+
+[node name="GunCrosshair" type="Sprite" parent="CombatHandler"]
+position = Vector2( 199, 1 )
+texture = ExtResource( 19 )
+hframes = 20
+vframes = 10
+frame = 25
+
+[node name="Bullets" type="Node2D" parent="CombatHandler"]
+
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 12 )
-animation = "idle"
+animation = "punch"
 playing = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -226,6 +380,8 @@ current = true
 zoom = Vector2( 1.45, 1.45 )
 process_mode = 0
 limit_smoothed = true
+smoothing_enabled = true
+smoothing_speed = 10.0
 editor_draw_limits = true
 editor_draw_drag_margin = true
 
@@ -235,14 +391,16 @@ shape = SubResource( 13 )
 one_way_collision = true
 
 [node name="DashTimer" type="Timer" parent="."]
-wait_time = 0.8
+wait_time = 0.7
 one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/dash = SubResource( 18 )
-anims/idle = SubResource( 19 )
-anims/run = SubResource( 20 )
-anims/walk = SubResource( 21 )
+anims/dash = SubResource( 51 )
+anims/idle = SubResource( 52 )
+anims/kick = SubResource( 53 )
+anims/punch = SubResource( 54 )
+anims/run = SubResource( 55 )
+anims/walk = SubResource( 56 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 32 )
@@ -250,5 +408,61 @@ anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 33 )
 parameters/conditions/is_dash_timeout = true
+parameters/conditions/max_punches = false
 
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" type="Control" parent="HUD"]
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 237.0
+margin_bottom = 72.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource( 16 )
+
+[node name="ProgressBar" type="ProgressBar" parent="HUD/HealthBar"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -150.0
+margin_top = -20.0
+margin_bottom = 20.0
+custom_styles/fg = SubResource( 34 )
+custom_styles/bg = SubResource( 35 )
+value = 50.0
+rounded = true
+allow_greater = true
+percent_visible = false
+
+[node name="TextureRect" type="TextureRect" parent="HUD/HealthBar"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -32.0
+margin_right = 64.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 64, 64 )
+texture = ExtResource( 14 )
+expand = true
+
+[node name="AttackCountBar" type="ProgressBar" parent="HUD"]
+margin_left = 992.0
+margin_top = 587.0
+margin_right = 1092.0
+margin_bottom = 611.0
+rect_min_size = Vector2( 100, 10 )
+rect_rotation = -90.0
+custom_styles/fg = SubResource( 37 )
+custom_styles/bg = SubResource( 38 )
+max_value = 3.0
+step = 1.0
+allow_greater = true
+allow_lesser = true
+percent_visible = false
+
+[connection signal="timeout" from="CombatHandler/MeleeTimer" to="CombatHandler" method="_on_MeleeTimer_timeout"]
+[connection signal="timeout" from="CombatHandler/FireTimer" to="CombatHandler" method="_on_FireTimer_timeout"]
+[connection signal="area_entered" from="CombatHandler/MeleeCombatHandler" to="CombatHandler" method="_on_MeleeCombatHandler_area_entered"]
+[connection signal="area_exited" from="CombatHandler/MeleeCombatHandler" to="CombatHandler" method="_on_MeleeCombatHandler_area_exited"]
 [connection signal="timeout" from="DashTimer" to="." method="_on_DashTimer_timeout"]
