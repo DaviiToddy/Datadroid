@@ -21,7 +21,7 @@ func takePlayerDamage(damage_amount: float) -> void:
 		emit_signal("CallGameOver")
 	playerHP -= damage_amount
 
-func giveEnemyDamage(enemy: Node, damage_amount: float) -> void:
+func giveEnemyDamage(enemy: EnemyMock, damage_amount: float) -> void:
 	#Enemy recebe Dano. Vázio pois Inimigo não implementado ainda.
 	if enemy:
 		enemy.takeDamage(damage_amount)

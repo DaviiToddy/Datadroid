@@ -15,18 +15,22 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Robot" parent="." instance=ExtResource( 1 )]
+[node name="YSort" type="YSort" parent="."]
+
+[node name="Robot" parent="YSort" instance=ExtResource( 1 )]
 position = Vector2( -32, 194 )
 collision_layer = 2
 player = NodePath("../Player")
 player_offset_speed_multiplier = 0.4
 
-[node name="Player" parent="." instance=ExtResource( 3 )]
+[node name="Player" parent="YSort" instance=ExtResource( 3 )]
 position = Vector2( -317, -305 )
 collision_layer = 2
 
-[node name="EnemyMock" parent="." instance=ExtResource( 4 )]
+[node name="EnemyMock" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( -174, 501 )
+HP = 500
 
-[node name="EnemyMock2" parent="." instance=ExtResource( 4 )]
+[node name="EnemyMock2" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 167, 501 )
+HP = 300

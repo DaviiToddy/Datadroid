@@ -13,10 +13,14 @@ enum defenses {
 	DODGE
 }
 
-const MELEE_PUNCH_COUNT = 0 #1
+# attacks = {
 const MELEE_KICK_COUNT = 2 #3
-const MELEE_PUNCH_DAMAGE = 20
 const MELEE_KICK_DAMAGE = 40
+
+const MELEE_PUNCH_COUNT = 0 #1
+const MELEE_PUNCH_DAMAGE = 20
+# }
+
 const MELEE_DODGE_DEFENSE = 15
 
 var meleeAttackCount = 0

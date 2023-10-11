@@ -18,6 +18,7 @@ func _ready() -> void:
 
 func _physics_process(delta) -> void:
 	actions_handler()
+	combat_handler(delta)
 	move_player(delta)
 	$CombatHandler/MeleeCombatHandler.position = velocity * 0.5
 
@@ -32,11 +33,6 @@ func actions_handler() -> void:
 		velocity = velocity * speed
 		$DashTimer.start()
 		return
-	if Input.is_action_just_pressed("gun_shoot"):
-		$CombatHandler.attack()
-		if $CombatHandler.current_combat == Enums.Combats.MELEE:
-			$HUD/AttackCountBar.value = $CombatHandler.meleeHandler.meleeAttackCount
-			$Sprite.play("kick")
 	if Input.is_action_pressed("move_run"):
 		_animate("run")
 		speed = SPEED_RUN
@@ -45,6 +41,36 @@ func actions_handler() -> void:
 	else:
 		_animate("walk")
 		speed = SPEED_WALK
+
+func combat_handler(delta: float):
+	#HUD
+	if $CombatHandler.current_combat == Enums.Combats.FIREARM:
+		$HUD/AttackCountBar.modulate.a = move_toward(
+			$HUD/AttackCountBar.modulate.a, 0.0, 2 * delta) #max alpha
+	else:
+		$HUD/AttackCountBar.modulate.a = move_toward(
+			$HUD/AttackCountBar.modulate.a, 1.0, 4 * delta) #min alpha
+	
+	
+	if Input.is_action_pressed("gun_shoot"):
+		$CombatHandler.attack()
+	if Input.is_action_just_pressed("gun_change"):
+		if $CombatHandler.current_combat == Enums.Combats.FIREARM:
+			$CombatHandler.current_combat = Enums.Combats.MELEE
+		else:
+			$CombatHandler.current_combat = Enums.Combats.FIREARM
+	
+	if not $CombatHandler.currentCombatState == \
+	Enums.CombatStates.ATTACKING:
+		#Meaning that no attack was effected
+		return
+	
+	if $CombatHandler.current_combat == Enums.Combats.MELEE:
+		if $CombatHandler.meleeHandler.attackType == MeleeCombat.attacks.PUNCH:
+			 _animate("punch")
+		elif $CombatHandler.meleeHandler.attackType == MeleeCombat.attacks.KICK:
+			 _animate("kick")
+		$HUD/AttackCountBar.value = $CombatHandler.meleeHandler.meleeAttackCount
 
 func move_player(delta: float) -> void:
 	var input_vector: = Vector2(
