@@ -16,9 +16,9 @@ enum defenses {
 }
 
 #@Override
-func _attack(attackType: int):
+func _attack():
 	pass
 
 #@Override
-func _defend(defenseType: int):
+func _defend():
 	pass

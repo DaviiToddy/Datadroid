@@ -7,27 +7,28 @@
 #
 class_name CombatHandler extends Node2D
 
-enum combats {
-	MELEE, FIREARM
-}
-enum combatStates {
-	PEACE, ATTACKING, DEFENDING
-}
-export(combats) var combat_status
-export(combatStates) var currentCombatState
+export(Enums.Combats) var current_combat
+export(Enums.CombatStates) var currentCombatState
 
-var meleeHandler = MeleeCombat.new()
-var meleeAttackCount = 0
+onready var meleeHandler = MeleeCombat.new()
 var meleeCollisionBody
 
-func _physics_process(delta):
-	if Input.is_action_just_pressed("gun_shoot"):
-		if combat_status == combats.MELEE \
-		and not $MeleeTimer.time_left \
-		and meleeCollisionBody:
-			meleeHandler._attack(meleeHandler.attacks.PUNCH)
-			PlayerData.giveEnemyDamage(meleeCollisionBody.get_parent(), meleeHandler.damage_amount)
-			$MeleeTimer.start()
+func attack():
+	#Is it a melee attack?
+	if current_combat == Enums.Combats.MELEE:
+		meleeAttack()
+	
+	currentCombatState = Enums.CombatStates.ATTACKING
+
+func meleeAttack():
+	if not $MeleeTimer.time_left and meleeCollisionBody:
+		meleeHandler._attack() #Adapts damage based on type
+		PlayerData.giveEnemyDamage(
+			meleeCollisionBody.get_parent(), #Enemy/Collider
+			meleeHandler.damage_amount #Apply this amount of damage
+		)
+		$MeleeTimer.start() #Countdown to next attack
+
 
 #Callback Functions
 func _on_MeleeCombatHandler_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):

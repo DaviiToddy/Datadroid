@@ -32,6 +32,11 @@ func actions_handler() -> void:
 		velocity = velocity * speed
 		$DashTimer.start()
 		return
+	if Input.is_action_just_pressed("gun_shoot"):
+		$CombatHandler.attack()
+		if $CombatHandler.current_combat == Enums.Combats.MELEE:
+			$HUD/AttackCountBar.value = $CombatHandler.meleeHandler.meleeAttackCount
+			$Sprite.play("kick")
 	if Input.is_action_pressed("move_run"):
 		_animate("run")
 		speed = SPEED_RUN
@@ -48,8 +53,8 @@ func move_player(delta: float) -> void:
 	).normalized()
 	
 	if input_vector.length() >= INPUT_DEADZONE:
-		velocity.x = lerp(velocity.x, input_vector.x * speed, ease(delta, 0.5))
-		velocity.y = lerp(velocity.y, input_vector.y * speed, ease(delta, 0.5))
+		velocity.x = lerp(velocity.x, input_vector.x * speed, ease(delta, 0.25))
+		velocity.y = lerp(velocity.y, input_vector.y * speed, ease(delta, 0.25))
 	elif input_vector.length() <= INPUT_DEADZONE:
 		velocity.x = move_toward(velocity.x, input_vector.x, FRICTION * delta)
 		velocity.y = move_toward(velocity.y, input_vector.y, FRICTION * delta)
@@ -70,3 +75,5 @@ func _flip_sprite():
 
 func _on_DashTimer_timeout() -> void:
 	animationTree.set("parameters/conditions/is_dash_timeout", true)
+	velocity.x = move_toward(velocity.x, 0, velocity.length() / 2)
+	velocity.y = move_toward(velocity.y, 0, velocity.length() / 2)

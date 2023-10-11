@@ -9,9 +9,9 @@
 class_name BaseCombat extends Node
 
 #@Abstract func
-func _attack(attackType: int):
+func _attack():
 	pass
 
 #@Abstract func
-func _defend(defenseType: int):
+func _defend():
 	pass
