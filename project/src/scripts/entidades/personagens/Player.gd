@@ -1,6 +1,6 @@
 class_name Player extends KinematicBody2D
 
-const FRICTION = 600.0
+const FRICTION = 800.0
 const SPEED_WALK = 400.0
 const SPEED_RUN = 700.0
 const DASH_MULTIPLIER = 3.0
@@ -17,30 +17,35 @@ func _ready() -> void:
 	animationTree.set("parameters/conditions/is_dash_timeout", true)
 
 func _physics_process(delta) -> void:
-	actions_handler()
+	actions_handler(delta)
 	combat_handler(delta)
 	move_player(delta)
 	$CombatHandler/MeleeCombatHandler.position = velocity * 0.5
 
-func actions_handler() -> void:
+func actions_handler(delta: float) -> void:
 	_flip_sprite()
 	if not animationTree.get("parameters/conditions/is_dash_timeout"):
 		return
 	if Input.is_action_just_pressed("move_dash"):
 		_animate("dash")
 		animationTree.set("parameters/conditions/is_dash_timeout", false)
-		speed = DASH_MULTIPLIER
-		velocity = velocity * speed
+		#DASH
+		#speed = DASH_MULTIPLIER
+		#velocity = velocity * speed
+		velocity = velocity * (1.5 + (1 / DASH_MULTIPLIER)) #Idk
+		#speed = (velocity.length() / 4) * (SPEED_WALK / DASH_MULTIPLIER / 3)
 		$DashTimer.start()
 		return
-	if Input.is_action_pressed("move_run"):
-		_animate("run")
-		speed = SPEED_RUN
-	elif velocity.length() <= INPUT_DEADZONE:
-		_animate("idle")
+	
+	if velocity.length() >= INPUT_DEADZONE:
+		if Input.is_action_pressed("move_run"):
+			_animate("run")
+			speed = SPEED_RUN
+		else:
+			_animate("walk")
+			speed = SPEED_WALK
 	else:
-		_animate("walk")
-		speed = SPEED_WALK
+		_animate("idle")
 
 func combat_handler(delta: float):
 	#HUD
