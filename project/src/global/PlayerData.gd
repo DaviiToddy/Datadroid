@@ -22,7 +22,8 @@ func takePlayerDamage(damage_amount: float) -> void:
 	playerHP -= damage_amount
 
 func giveEnemyDamage(enemy: EnemyMock, damage_amount: float) -> void:
-	#Enemy recebe Dano. Vázio pois Inimigo não implementado ainda.
-	if enemy:
+	#Enemy recebe Dano.
+	#Está vazio pois Enemy não foi implementado ainda.
+	if enemy and not enemy.is_queued_for_deletion():
 		enemy.takeDamage(damage_amount)
 

@@ -1,0 +1,129 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://src/entidades/enemies/EnemyBT.gd" type="Script" id=1]
+[ext_resource path="res://content/assets/sprites/personagens/bonecos_cartoon/Robot/PNG/Poses/character_robot_behindBack.png" type="Texture" id=2]
+[ext_resource path="res://content/assets/fonts/Exo-Black.otf" type="DynamicFontData" id=3]
+[ext_resource path="res://addons/behavior_tree/src/behavior_tree.gd" type="Script" id=4]
+[ext_resource path="res://addons/behavior_tree/src/btnodes/composites/bt_sequence.gd" type="Script" id=6]
+[ext_resource path="res://addons/behavior_tree/src/btnodes/bt_leaf.gd" type="Script" id=7]
+[ext_resource path="res://addons/behavior_tree/src/btnodes/composites/bt_selector.gd" type="Script" id=8]
+[ext_resource path="res://addons/behavior_tree/src/btnodes/leaves/bt_wait.gd" type="Script" id=9]
+[ext_resource path="res://src/entidades/BT/Enemies/Basic/IsPlayerAround.gd" type="Script" id=10]
+[ext_resource path="res://addons/behavior_tree/src/blackboard.gd" type="Script" id=11]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 22.0
+height = 70.0
+
+[sub_resource type="DynamicFont" id=4]
+outline_size = 2
+outline_color = Color( 1, 1, 1, 0.247059 )
+font_data = ExtResource( 3 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.498039, 0, 0.619608, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0, 0, 0, 0.466667 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 500.0
+
+[node name="EnemyBT" type="Node2D"]
+script = ExtResource( 1 )
+HP = 200
+
+[node name="HpShowTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="Sprite" type="Sprite" parent="."]
+self_modulate = Color( 0.054902, 1, 0, 1 )
+texture = ExtResource( 2 )
+
+[node name="CombatCollider" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CombatCollider"]
+position = Vector2( 0, 10 )
+shape = SubResource( 1 )
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -74.0
+margin_top = -61.0
+margin_right = 76.0
+margin_bottom = -36.0
+rect_min_size = Vector2( 150, 25 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = SubResource( 3 )
+max_value = 0.0
+rounded = true
+allow_greater = true
+allow_lesser = true
+
+[node name="PlayerWatcher" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerWatcher"]
+shape = SubResource( 5 )
+
+[node name="BehaviorTree" type="Node" parent="."]
+script = ExtResource( 4 )
+is_active = true
+_blackboard = NodePath("../Blackboard")
+_agent = NodePath("..")
+
+[node name="Patrol" type="Node" parent="BehaviorTree"]
+script = ExtResource( 8 )
+
+[node name="IsPlayerAround" type="Node" parent="BehaviorTree/Patrol"]
+script = ExtResource( 10 )
+
+[node name="Attack" type="Node" parent="BehaviorTree/Patrol/IsPlayerAround"]
+script = ExtResource( 6 )
+
+[node name="CheckPlayer" type="Node" parent="BehaviorTree/Patrol/IsPlayerAround/Attack"]
+script = ExtResource( 7 )
+
+[node name="Attack" type="Node" parent="BehaviorTree/Patrol/IsPlayerAround/Attack"]
+script = ExtResource( 7 )
+
+[node name="BTWait" type="Node" parent="BehaviorTree/Patrol/IsPlayerAround/Attack"]
+script = ExtResource( 9 )
+wait_time = 0.5
+
+[node name="Walk" type="Node" parent="BehaviorTree/Patrol"]
+script = ExtResource( 8 )
+
+[node name="FindNextPath" type="Node" parent="BehaviorTree/Patrol/Walk"]
+script = ExtResource( 7 )
+
+[node name="WalkToPath" type="Node" parent="BehaviorTree/Patrol/Walk"]
+script = ExtResource( 7 )
+
+[node name="Blackboard" type="Node" parent="."]
+script = ExtResource( 11 )
+data = {
+"isPlayerNear": false
+}
+
+[connection signal="area_entered" from="CombatCollider" to="." method="_on_CombatCollider_area_entered"]
+[connection signal="area_entered" from="PlayerWatcher" to="." method="_on_PlayerWatcher_area_entered"]
+[connection signal="area_exited" from="PlayerWatcher" to="." method="_on_PlayerWatcher_area_exited"]
